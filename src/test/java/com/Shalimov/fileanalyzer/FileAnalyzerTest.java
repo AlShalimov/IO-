@@ -21,7 +21,7 @@ public class FileAnalyzerTest {
     @BeforeEach
     void before() {
         fileAnalyzer = new FileAnalyzer();
-        path = new File("D:Yesterday.txt");
+        path = new File(new File("Yesterday.txt").getAbsolutePath());
     }
 
     @Test
