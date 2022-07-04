@@ -1,13 +1,14 @@
-package com.Shalimov.fileanalyzer;
+package com.shalimov.fileanalyzer;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import java.io.*;
 import java.util.List;
+import org.junit.Before;
+import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 public class FileAnalyzerTest {
     private final String CONTENT = "Yesterday, all my troubles seemed so far away." +
@@ -18,23 +19,23 @@ public class FileAnalyzerTest {
     private FileAnalyzer fileAnalyzer;
     private File path;
 
-    @BeforeEach
-    void before() {
+    @Before
+   public void before() {
         fileAnalyzer = new FileAnalyzer();
         path = new File(new File("Yesterday.txt").getAbsolutePath());
     }
 
     @Test
     public void testWhenPathIsNullThemNullPointerException() {
-        Assertions.assertThrows(NullPointerException.class, () -> {
-            fileAnalyzer.analyzer(null, "Yesterday");
+     assertThrows(NullPointerException.class, () -> {
+            fileAnalyzer.analyzers(null, "Yesterday");
         });
     }
 
     @Test
     public void testWhenWordIsNullThemNullPointerException() {
-        Assertions.assertThrows(NullPointerException.class, () -> {
-            fileAnalyzer.analyzer(path.getPath(), null);
+    assertThrows(NullPointerException.class, () -> {
+            fileAnalyzer.analyzers(path.getPath(), null);
         });
     }
 

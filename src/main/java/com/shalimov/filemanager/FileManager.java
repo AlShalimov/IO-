@@ -1,4 +1,4 @@
-package com.Shalimov.filemanager;
+package com.shalimov.filemanager;
 
 import java.io.*;
 
@@ -49,7 +49,7 @@ public class FileManager {
         }
         for (File files : list) {
             if (files.isDirectory()) {
-                File newDir = new File(file + File.separator + files.getName());
+                File newDir = new File(file , files.getName());
                 clean(newDir);
             }
             files.delete();
@@ -79,11 +79,6 @@ public class FileManager {
             } catch (IOException exception) {
                 throw new RuntimeException("Cant read fileContent", exception);
             }
-        }
-    }
-    private static void checkNull(File file) {
-        if (file == null) {
-            throw new NullPointerException(" File or dirs not exist !");
         }
     }
 }

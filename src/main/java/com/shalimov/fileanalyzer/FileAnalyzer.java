@@ -1,4 +1,4 @@
-package com.Shalimov.fileanalyzer;
+package com.shalimov.fileanalyzer;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,15 +11,18 @@ public class FileAnalyzer {
 
     private static final Pattern SENTENCE_PATTERN = Pattern.compile("((?<=[.!?]))");
 
-    public void analyzer(String path, String word) {
+    public void analyzers(String path, String word) {
         if (word == null) {
             throw new NullPointerException("The word is blank. Provide a valid word");
+        }
+        if (path==null){
+            throw new NullPointerException("Provide s valid path");
         }
         String content = readContent(path);
         int wordCount = countWords(content, word);
         List<String> sentences = splitSentence(content);
         List<String> filteredSentences = filter(sentences, word);
-        System.out.println(printResult(wordCount, word, filteredSentences));
+        System.out.println(result(wordCount, word, filteredSentences));
     }
 
     public int countWords(String content, String searchWord) {
@@ -39,7 +42,7 @@ public class FileAnalyzer {
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
             content = new String(fileInputStream.readAllBytes());
         } catch (IOException exception) {
-            throw new RuntimeException("Cant read file by path");
+            throw new RuntimeException("Cant read file by path",exception);
         }
         return content;
     }
@@ -63,7 +66,7 @@ public class FileAnalyzer {
         return resultList;
     }
 
-    private String printResult(int wordCount, String word, List<String> filteredSentences) {
+    private String result(int wordCount, String word, List<String> filteredSentences) {
         StringBuilder result = new StringBuilder();
         result.append("In the text, the word ");
         result.append(word);

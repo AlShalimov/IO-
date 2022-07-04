@@ -1,21 +1,21 @@
-package com.Shalimov.filemanager;
+package com.shalimov.filemanager;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import static com.Shalimov.filemanager.FileManager.*;
+import static com.shalimov.filemanager.FileManager.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FileManagerTest {
     FileManager fileManager = new FileManager();
 
-    @BeforeEach
+    @Before
     public void before() throws IOException {
         new File("testDirectory").mkdir();
         new File("testDirectory/src").mkdir();
@@ -27,7 +27,7 @@ public class FileManagerTest {
         fileOutputStream.close();
     }
 
-    @AfterEach
+    @After
     public void after() {
         clean(new File("testDirectory"));
         clean(new File("testDirectory2"));
@@ -49,14 +49,14 @@ public class FileManagerTest {
 
     @Test
     public void testCountFilesThrowNullPointExceptionWhenCountNotExist() {
-        Assertions.assertThrows(NullPointerException.class, () -> {
+        assertThrows(NullPointerException.class, () -> {
             countFiles("notExistingDir");
         });
     }
 
     @Test
     public void whenCountNotExistingDirs_thenNullPointerExceptionReturned() {
-        Assertions.assertThrows(NullPointerException.class, () -> {
+     assertThrows(NullPointerException.class, () -> {
             countDirs("notExistingDir");
         });
     }
