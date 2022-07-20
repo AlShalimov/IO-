@@ -56,7 +56,7 @@ public class FileManagerTest {
 
     @Test
     public void whenCountNotExistingDirs_thenNullPointerExceptionReturned() {
-     assertThrows(NullPointerException.class, () -> {
+        assertThrows(NullPointerException.class, () -> {
             countDirs("notExistingDir");
         });
     }

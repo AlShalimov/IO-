@@ -4,16 +4,15 @@ import java.io.*;
 
 public class FileManager {
 
+
+    public static void main(String[] args) {
+        System.out.println(countFiles("C:\\Windows"));
+    }
+
     public static int countFiles(String path) {
         File filePath = new File(path);
-        int count = 0;
-        for (File file : filePath.listFiles()) {
-            if (file.isDirectory()) {
-                count += countFiles(file.getAbsolutePath());
-            } else {
-                count++;
-            }
-        }
+        int count;
+        count = fileSaver(filePath);
         return count;
     }
 
@@ -49,7 +48,7 @@ public class FileManager {
         }
         for (File files : list) {
             if (files.isDirectory()) {
-                File newDir = new File(file , files.getName());
+                File newDir = new File(file, files.getName());
                 clean(newDir);
             }
             files.delete();
@@ -80,5 +79,20 @@ public class FileManager {
                 throw new RuntimeException("Cant read fileContent", exception);
             }
         }
+    }
+
+    private static int fileSaver(File path) {
+        int count = 0;
+        File[] files = path.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    count += fileSaver(file);
+                } else if (file.isFile()) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 }

@@ -3,6 +3,7 @@ package com.shalimov.fileanalyzer;
 
 import java.io.*;
 import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,21 +21,21 @@ public class FileAnalyzerTest {
     private File path;
 
     @Before
-   public void before() {
+    public void before() {
         fileAnalyzer = new FileAnalyzer();
         path = new File(new File("Yesterday.txt").getAbsolutePath());
     }
 
     @Test
     public void testWhenPathIsNullThemNullPointerException() {
-     assertThrows(NullPointerException.class, () -> {
+        assertThrows(NullPointerException.class, () -> {
             fileAnalyzer.analyzers(null, "Yesterday");
         });
     }
 
     @Test
     public void testWhenWordIsNullThemNullPointerException() {
-    assertThrows(NullPointerException.class, () -> {
+        assertThrows(NullPointerException.class, () -> {
             fileAnalyzer.analyzers(path.getPath(), null);
         });
     }
